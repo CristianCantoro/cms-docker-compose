@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=cms
+      - POSTGRES_DB=cmsdb
+      - POSTGRES_PASSWORD=${CMSDB_PASSWORD}
+    volumes:
+      - cmsdb-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cms -d cmsdb"]
+      interval: 5s
+      timeout: 2s
+      retries: 2
+    restart: unless-stopped
+
+  taskbuilder:
+    image: cms-taskbuilder
+    build:
+      context: ./images/taskbuilder
+      dockerfile: Dockerfile
+    privileged: true
+
+  services:
+    image: cms-services
+    build:
+      context: ./images/services
+      dockerfile: Dockerfile
+    entrypoint: ["wait-for-it", "db:5432", "-t", "30", "--",
+                 "/entrypoint.sh"]
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  cmsdb-data:

@@ -1,0 +1,3 @@
+# ignore contest directory content, but keep the directory
+contest/*
+!contest/.gitkeep
