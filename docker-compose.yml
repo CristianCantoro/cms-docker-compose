@@ -19,17 +19,17 @@ services:
   taskbuilder:
     image: cms-taskbuilder
     build:
-      context: ./images/taskbuilder
+      context: ./docker/taskbuilder
       dockerfile: Dockerfile
     privileged: true
 
   services:
     image: cms-services
     build:
-      context: ./images/services
+      context: ./docker/services
       dockerfile: Dockerfile
     entrypoint: ["wait-for-it", "db:5432", "-t", "30", "--",
-                 "/entrypoint.sh"]
+                 "/init"]
     depends_on:
       - db
     links:
