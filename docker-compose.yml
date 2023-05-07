@@ -14,6 +14,8 @@ services:
       interval: 5s
       timeout: 2s
       retries: 2
+    networks:
+      - cms-backend
     restart: unless-stopped
 
   taskbuilder:
@@ -30,10 +32,27 @@ services:
       dockerfile: Dockerfile
     entrypoint: ["wait-for-it", "db:5432", "-t", "30", "--",
                  "/init"]
+    networks:
+      - cms-backend
+      - cms-frontend
     depends_on:
       - db
-    links:
-      - db
+    restart: unless-stopped
+
+  web:
+    image: 1.23-bullseye
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - cms-frontend
+    restart: unless-stopped
+
+networks:
+  cms-backend:
+  cms-frontend:
 
 volumes:
   cmsdb-data:
