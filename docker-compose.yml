@@ -25,10 +25,10 @@ services:
       dockerfile: Dockerfile
     privileged: true
 
-  services:
+  cms-services:
     image: cms-services
     build:
-      context: ./docker/services
+      context: ./docker/cms-services
       dockerfile: Dockerfile
     entrypoint: ["wait-for-it", "db:5432", "-t", "30", "--",
                  "/init"]
