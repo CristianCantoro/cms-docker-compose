@@ -4,13 +4,13 @@ services:
   db:
     image: postgres:9.6
     environment:
-      - POSTGRES_USER=cms
+      - POSTGRES_USER=cmsuser
       - POSTGRES_DB=cmsdb
-      - POSTGRES_PASSWORD=${CMSDB_PASSWORD}
+      - POSTGRES_PASSWORD=${CMS_DB_PASSWORD}
     volumes:
       - cmsdb-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U cms -d cmsdb"]
+      test: ["CMD-SHELL", "pg_isready -U cmsuser -d cmsdb"]
       interval: 5s
       timeout: 2s
       retries: 2
