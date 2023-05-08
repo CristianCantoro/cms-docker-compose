@@ -1,2 +1,6 @@
 # ignore file used only for developement
 rootfs/root/.bashrc
+
+# ignore config files
+rootfs/usr/local/etc/cms.conf
+rootfs/usr/local/etc/cms.ranking.conf
