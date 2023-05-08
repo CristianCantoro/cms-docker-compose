@@ -4,6 +4,3 @@
 # ignore contest directory content, but keep the directory
 contest/*
 !contest/.gitkeep
-
-# ignore s6 directory, it's just experiments
-docker/s6/*
