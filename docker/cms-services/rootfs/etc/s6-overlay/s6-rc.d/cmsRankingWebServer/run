@@ -1,2 +1,3 @@
-#!/command/execlineb -P
-cmsRankingWebServer
+#!/command/with-contenv bash
+
+exec cmsRankingWebServer

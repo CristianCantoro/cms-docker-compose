@@ -1,2 +1,22 @@
-#!/command/execlineb -P
-cmsResourceService -a $CONTEST_ID
+#!/command/with-contenv bash
+
+critical() {
+	# define ANSI escape codes
+	# -- bold_yellow="\033[1;33m"
+	bold_red="\033[1;31m"
+	reset="\033[0m"
+	crit="${bold_red}$(date "+%Y-%m-%d %H:%M:%S,%3N") [CRITICAL]${reset}\t"
+
+	msg="$1"
+
+	echo -e "${crit}${msg}" >&2
+}
+
+
+if [ -n "${CONTEST_ID+x}" ]; then
+  exec cmsResourceService -a "$CONTEST_ID"
+else
+  critical 'Missing value for CONTEST_ID'
+fi
+
+exit 0

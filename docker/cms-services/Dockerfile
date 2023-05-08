@@ -21,10 +21,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN DEBIAN_FRONTEND=noninteractive \
     && apt-get update && apt-get upgrade -y \
       wait-for-it \
-      nginx-full \
       xz-utils \
       wget \
-      vim \
     && rm -rf /var/lib/apt/lists/*
 
 
