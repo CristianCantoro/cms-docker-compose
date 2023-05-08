@@ -27,6 +27,8 @@ services:
 
   cms-services:
     image: cms-services
+    environment:
+      - CONTEST_ID=${CMS_CONTEST_ID}
     build:
       context: ./docker/cms-services
       dockerfile: Dockerfile
@@ -44,6 +46,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - cms-frontend
     restart: unless-stopped
