@@ -40,12 +40,10 @@ services:
     restart: unless-stopped
 
   web:
-    image: 1.23-bullseye
+    image: nginx:1.23-bullseye
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
     networks:
       - cms-frontend
     restart: unless-stopped
