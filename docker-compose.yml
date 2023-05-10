@@ -29,6 +29,7 @@ services:
     image: cms-services
     environment:
       - CONTEST_ID=${CMS_CONTEST_ID}
+      - IMPORT_CONTEST=${CMS_IMPORT_CONTEST}
     build:
       context: ./docker/cms-services
       dockerfile: Dockerfile
