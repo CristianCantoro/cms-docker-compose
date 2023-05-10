@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Utility to list CMS contests.
+
+"""
+
+import argparse
+import sys
+
+from cms.db import Contest, SessionGen
+
+
+def retrieve_last_contest():
+    with SessionGen() as session:
+        last_contest = (session.query(Contest)
+                               .order_by(Contest.id.desc())
+                               .first())
+
+        print(last_contest.id)
+
+    return True
+
+
+def main():
+    """Parse arguments and launch process.
+
+    """
+    parser = argparse.ArgumentParser(
+        description="Retrieve contests from CMS.")
+    _ = parser.parse_args()
+
+    success = retrieve_last_contest()
+    return 0 if success is True else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

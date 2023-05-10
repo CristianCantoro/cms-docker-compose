@@ -1,0 +1,9 @@
+#!/command/with-contenv bash
+
+if [ -n "${IMPORT_CONTEST+x}" ]; then
+  cmsImportUser --loader italy_yaml --all /home/cmsuser/contest/
+  cmsImportContest --loader italy_yaml --import-tasks /home/cmsuser/contest/
+  export CONTEST_ID=$(cmsRetrieveLastContest | tail -n1)
+fi
+
+exit 0

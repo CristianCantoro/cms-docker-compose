@@ -12,7 +12,6 @@ critical() {
 	echo -e "${crit}${msg}" >&2
 }
 
-
 if [ -n "${CONTEST_ID+x}" ]; then
   exec cmsResourceService -a "$CONTEST_ID"
 else
