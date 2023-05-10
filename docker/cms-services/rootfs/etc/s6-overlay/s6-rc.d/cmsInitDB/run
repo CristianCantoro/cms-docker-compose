@@ -1,0 +1,6 @@
+#!/command/with-contenv bash
+
+if $CMS_INIT; then
+  exec cmsInitDB
+fi
+

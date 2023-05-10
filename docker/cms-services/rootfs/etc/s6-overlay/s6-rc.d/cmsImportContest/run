@@ -1,0 +1,6 @@
+#!/command/with-contenv bash
+
+if [ -n "${IMPORT_CONTEST+x}" ] && [ -n "${CONTEST_ID+x}" ]; then
+  exec cmsImportTask -L italy_yaml -i -c "$CMS_CONTEST_ID" /home/cmsuser/contest
+fi
+
