@@ -50,7 +50,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./docker/nginx/configs/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/web/configs/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - cms-services
     networks:
       - cms-frontend
     restart: unless-stopped
