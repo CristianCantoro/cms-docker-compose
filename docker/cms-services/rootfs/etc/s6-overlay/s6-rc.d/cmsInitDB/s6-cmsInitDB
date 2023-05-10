@@ -1,5 +1,7 @@
-#!/usr/bin/env bash
+#!/command/with-contenv bash
 
 if $CMS_INIT; then
   cmsInitDB
 fi
+
+exit 0
