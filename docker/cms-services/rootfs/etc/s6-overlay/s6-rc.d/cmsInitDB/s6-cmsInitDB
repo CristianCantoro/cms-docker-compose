@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if $CMS_INIT; then
+  cmsInitDB
+fi

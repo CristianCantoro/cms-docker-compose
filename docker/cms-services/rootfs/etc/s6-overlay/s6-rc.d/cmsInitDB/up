@@ -1,5 +1,1 @@
-#!/command/with-contenv bash
-
-if $CMS_INIT; then
-  cmsInitDB
-fi
+/etc/s6-overlay/s6-rc.d/cmsInitDB/s6-cmsInitDB
