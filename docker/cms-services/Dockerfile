@@ -23,6 +23,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
       wait-for-it \
       xz-utils \
       wget \
+      less \
+      vim \
     && rm -rf /var/lib/apt/lists/*
 
 
